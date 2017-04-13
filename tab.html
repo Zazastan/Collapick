@@ -1,0 +1,37 @@
+<nav class="navbar navbar-default">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<a class="navbar-brand" ng-click="home()">Pizza</a>
+		</div>
+
+		<ul class="nav navbar-nav navbar-right">
+			<li uib-dropdown ><a uib-dropdown-toggle>{{basket.length}} kpl <span class="glyphicon glyphicon-shopping-cart" ></span></a>
+			
+				<ul uib-dropdown-menu role="menu" aria-labelledby="single-button" ng-click="$event.stopPropagation()">
+				<table class="table">
+					<tr>
+						<th>Pizza</th>
+						<th>Mausteet</th>
+						<th>Hinta</th>
+						<th>Poista</th>
+					</tr>
+					<tr ng-repeat="pizza in basket">
+						<td role="menuitem" style="white-space:nowrap; text-overflow:ellipsis">{{pizza.name}}</td>
+						<td role="menuitem" style="white-space:nowrap; text-overflow:ellipsis"><span ng-repeat="condiment in pizza.condiments">{{condiment + " "}}</span></td>
+						<td role="menuitem" style="white-space:nowrap; text-overflow:ellipsis">{{pizza.prize | number:2}}€</td>
+						<td><button style="background-color:red; color:white; border-radius:50%; border:none;" class="glyphicon glyphicon-remove" ng-click="remove($index)"></button></td>
+					</tr>
+				</table>
+				<div>
+					Kokonaishinta: {{basketInfo.totalCost | number:2}}€ 
+					<button ng-if="basket.length" ng-click="openModal()">Tilaa</button> 
+				</div>
+				
+				</ul>
+			</li>
+		</ul>
+	</div>
+</nav>
+
+<div ui-view="loput" style="height:80%; width:100%; background-color:#ffffff;"></div>
+

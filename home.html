@@ -1,0 +1,40 @@
+<div class="input-group">
+    <span class="input-group-addon">
+		<span class="glyphicon glyphicon-search"></span>
+	</span>
+	
+    <input type="search" value="" ng-model="data.filter" placeholder="Suodata ainesten tai pizzan nimillä... esim. kinkku pepperoni Opera..." 
+		title="Suodata ainesten tai pizzan nimillä... esim. kinkku pepperoni Opera..." class="form-control">
+		
+	<span class="input-group-addon product_filter_info" title="Voit suodattaa pizzoja joko niiden nimen perusteella tai täytteiden perusteella.
+Aloita kirjoittamaan niin lista päivittyy automaattisesti!">
+		<span class="glyphicon glyphicon-info-sign"></span>
+	</span>
+	
+</div>
+<ul class="product_listing list-group">
+    <li class="product list-group-item" itemtype="http://schema.org/Product" ng-repeat="pizza in pizzas | filter:data.filter">
+        <h4 class="product_name list-group-item-heading"><span class="product_name_value">{{pizza.name}}</span>
+			<div class="product_name_right_panel pull-right">
+				<div class="product_variants text-right">
+					Norm. {{pizza.prize | number:2}}€
+				</div>
+				<div class="product_buttons text-right" >
+					<button class="btn btn-success btn-sm edit_product edit_only" title="Lisää ostoskoriin" ng-click="addToBasket(pizza)" >
+						<span class="glyphicon glyphicon-shopping-cart hidden-sm-inline hidden-xs-inline"></span>
+						<span class="hidden-xs-inline hidden-sm-inline">Lisää Ostoskoriin</span>
+					</button>
+				</div>
+			</div>
+        </h4>
+        <div class="product_ingredients">
+            <strong>Täytteet:</strong> <span ng-repeat="filling in pizza.fillings">{{filling + " "}}</span>
+        </div>
+        <div class="product_free_ingredients">
+			<strong>Mausteet:</strong><span class="visible-xs"><span class="spacer"> </span></span>
+			<input type="checkbox" ng-model="pizza.Oregano" class="free_ingredient"><label><span class="icon"></span>Oregano</label> 
+			<input type="checkbox" ng-model="pizza.Tulinen" class="free_ingredient"><label><span class="icon"></span>Tulinen</label> 
+			<input type="checkbox" ng-model="pizza.Valkosipuli" class="free_ingredient"><label><span class="icon"></span>Valkosipuli</label>
+		</div>
+    </li>
+<ul>

@@ -1,0 +1,27 @@
+<div class="modal-header">
+    <h3 class="modal-title" id="modal-title">Tilaus</h3>
+</div>
+<div class="modal-body" id="modal-body">
+    <div>
+		<input type="email" placeholder="Sähköposti">
+		<input type="text" placeholder="Osoite">
+		
+		<table class="table">
+			<tr>
+				<th>Pizza</th>
+				<th>Mausteet</th>
+				<th>Hinta</th>
+			</tr>
+			<tr ng-repeat="pizza in basket">
+				<td role="menuitem" style="white-space:nowrap; text-overflow:ellipsis">{{pizza.name}}</td>
+				<td role="menuitem" style="white-space:nowrap; text-overflow:ellipsis"><span ng-repeat="condiment in pizza.condiments">{{condiment + " "}}</span></td>
+				<td role="menuitem" style="white-space:nowrap; text-overflow:ellipsis">{{pizza.prize | number:2}}€</td>
+			</tr>
+		</table>
+		Loppuhinta: {{basketInfo.totalCost}}€
+    </div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" type="button" ng-click="order()">Tilaa</button>
+    <button class="btn btn-warning" type="button" ng-click="closeModal()">Peruuta</button>
+</div>
