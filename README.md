@@ -1,4 +1,4 @@
 # Pizza
 
 
-A Pizza web 
+A Pizza web app
